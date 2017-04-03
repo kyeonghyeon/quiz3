@@ -1,0 +1,10 @@
+<%= form_for @calculate do |f| %>
+  <%= f.number_field :a %>
+  <%= f.text_field   :operator %>
+  <%= f.number_field :b %>
+  <%= f.submit 'submit' %>
+<% end %>
+
+<% @calculates.each do |c| %>
+  <%= c.a %> <%= c.operator %> <%= c.b %> = <%= Calculate.calculate(c.a, c.operator, c.b) %><br>
+<% end %>
