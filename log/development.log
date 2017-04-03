@@ -1,0 +1,583 @@
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCalculates (20170402204031)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "calculates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first" integer, "second" integer, "operator" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170402204031"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-04-02 20:44:55 UTC], ["updated_at", 2017-04-02 20:44:55 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/" for ::1 at 2017-04-03 05:48:40 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Parameters: {"internal"=>true}
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/railties-5.0.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/railties-5.0.2/lib/rails/templates/rails/welcome/index.html.erb (4.2ms)
+Completed 200 OK in 23ms (Views: 10.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2017-04-03 05:52:10 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  Rendered calculates/new.html.erb within layouts/application (16.8ms)
+Completed 200 OK in 511ms (Views: 503.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2017-04-03 05:54:50 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.2ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 31ms (Views: 23.0ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/calculates" for ::1 at 2017-04-03 05:54:55 +0900
+Processing by CalculatesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"LASwr/okcemO/lOkYxiC7zg9QQWsneUkwEQTcfYs0I52galU70Gs76ZRPNtK9N0CXZnLbRrRUvN6V1YlNxlYUQ==", "calculate"=>{"first"=>"1", "operator"=>"+", "second"=>"2"}, "commit"=>"submit"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "calculates" ("first", "second", "operator", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["first", 1], ["second", 2], ["operator", "+"], ["created_at", 2017-04-02 20:54:55 UTC], ["updated_at", 2017-04-02 20:54:55 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+No template found for CalculatesController#create, rendering head :no_content
+Completed 204 No Content in 48ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/" for ::1 at 2017-04-03 05:54:57 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.2ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (7.1ms)
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (wrong number of arguments (given 1, expected 0)):
+     6: <% end %>
+     7: 
+     8: <% @calculates.each do |c| %>
+     9:   <%= c.first %> + <%= c.operator %> + <%= c.second %> = <%= c.first c.operator c.second %><br>
+    10: <% end %>
+  
+app/views/calculates/new.html.erb:9:in `block in _app_views_calculates_new_html_erb__1079388042999009051_70331850494280'
+app/views/calculates/new.html.erb:8:in `_app_views_calculates_new_html_erb__1079388042999009051_70331850494280'
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.7ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (79.5ms)
+Started GET "/" for ::1 at 2017-04-03 05:55:20 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.2ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 29ms (Views: 21.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2017-04-03 05:55:21 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.2ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 23ms (Views: 21.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2017-04-03 05:55:34 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.2ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 25ms (Views: 23.4ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/calculates" for ::1 at 2017-04-03 05:55:43 +0900
+Processing by CalculatesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pDkgRREr14FpLsUrXrO/9KUEyAOpet5XF7vzn7JHV0/+vDm+BE4Kh0GBqlR3X+AZwKBCax82aYCtqLbLc3LfkA==", "calculate"=>{"first"=>"2", "operator"=>"/", "second"=>"2"}, "commit"=>"submit"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "calculates" ("first", "second", "operator", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["first", 2], ["second", 2], ["operator", "/"], ["created_at", 2017-04-02 20:55:43 UTC], ["updated_at", 2017-04-02 20:55:43 UTC]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to 
+Completed 500 Internal Server Error in 111ms (ActiveRecord: 1.6ms)
+
+
+  
+NoMethodError (undefined method `new_url' for #<CalculatesController:0x007feecbfd4fc8>):
+  
+app/controllers/calculates_controller.rb:10:in `create'
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (2.4ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (116.8ms)
+Started POST "/calculates" for ::1 at 2017-04-03 05:56:00 +0900
+Processing by CalculatesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pDkgRREr14FpLsUrXrO/9KUEyAOpet5XF7vzn7JHV0/+vDm+BE4Kh0GBqlR3X+AZwKBCax82aYCtqLbLc3LfkA==", "calculate"=>{"first"=>"2", "operator"=>"/", "second"=>"2"}, "commit"=>"submit"}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "calculates" ("first", "second", "operator", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["first", 2], ["second", 2], ["operator", "/"], ["created_at", 2017-04-02 20:56:00 UTC], ["updated_at", 2017-04-02 20:56:00 UTC]]
+  [1m[35m (2.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3001/calculates/new
+Completed 302 Found in 12ms (ActiveRecord: 3.2ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 05:56:00 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.1ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 17ms (Views: 15.8ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/calculates" for ::1 at 2017-04-03 05:56:08 +0900
+Processing by CalculatesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"58OQmZXJiB1lG3XyndhQEE0bOYjLUgRjqXSv9ZzxhWy9RoligKxVG020Go20NA/9KL+z4H0es7QTZ+qhXcQNsw==", "calculate"=>{"first"=>"2", "operator"=>"+", "second"=>"2"}, "commit"=>"submit"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "calculates" ("first", "second", "operator", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["first", 2], ["second", 2], ["operator", "+"], ["created_at", 2017-04-02 20:56:08 UTC], ["updated_at", 2017-04-02 20:56:08 UTC]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3001/calculates/new
+Completed 302 Found in 3ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 05:56:08 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.2ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 20ms (Views: 17.9ms | ActiveRecord: 0.2ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", :environment]]
+DEPRECATION WARNING: Passing #original_exception is deprecated and has no effect. Exceptions will automatically capture the original exception. (called from require at /Users/jongwon/RubymineProjects/calculator/bin/rails:9)
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCalculates (20170402204031)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "calculates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "a" float, "b" float, "operator" varchar, "answer" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170402204031"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-04-02 21:05:29 UTC], ["updated_at", 2017-04-02 21:05:29 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/calculates/new" for ::1 at 2017-04-03 06:07:00 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  Rendered calculates/new.html.erb within layouts/application (6.0ms)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `first' for #<Calculate:0x007feecc4e7718>):
+    1: <%= form_for @calculate do |f| %>
+    2:   <%= f.number_field :first %>
+    3:   <%= f.text_field   :operator %>
+    4:   <%= f.number_field :second %>
+    5:   <%= f.submit 'submit' %>
+  
+app/views/calculates/new.html.erb:2:in `block in _app_views_calculates_new_html_erb__1079388042999009051_70331821970900'
+app/views/calculates/new.html.erb:1:in `_app_views_calculates_new_html_erb__1079388042999009051_70331821970900'
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.2ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (69.5ms)
+Started GET "/calculates/new" for ::1 at 2017-04-03 06:08:13 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.1ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 35ms (Views: 27.8ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/calculates" for ::1 at 2017-04-03 06:08:19 +0900
+Processing by CalculatesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"AM0p9Y5caeNS829ZL66rVEMlCsVwpzwWANaz4Sp/9+ZaSDAOmzm05XpcACYGQvS5JoGArcbri8G6xfa160p/OQ==", "calculate"=>{"a"=>"1", "operator"=>"+", "b"=>"2"}, "commit"=>"submit"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "calculates" ("a", "b", "operator", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["a", 1.0], ["b", 2.0], ["operator", "+"], ["created_at", 2017-04-02 21:08:19 UTC], ["updated_at", 2017-04-02 21:08:19 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3001/calculates/new
+Completed 302 Found in 4ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 06:08:19 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.2ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 17ms (Views: 15.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 06:09:00 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.1ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 18ms (Views: 16.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 06:09:07 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.1ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (3.1ms)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.1ms)
+
+
+  
+ActionView::Template::Error (wrong number of arguments (given 1, expected 0)):
+     7: 
+     8: <% @calculates.each do |c| %>
+     9:   <%= c.a %> <%= c.operator %> <%= c.b %> = <%= @answer %><br>
+    10:   <%= c.a c.operator c.b %>
+    11: <% end %>
+  
+app/views/calculates/new.html.erb:10:in `block in _app_views_calculates_new_html_erb__1079388042999009051_70331799627560'
+app/views/calculates/new.html.erb:8:in `_app_views_calculates_new_html_erb__1079388042999009051_70331799627560'
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.5ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (67.4ms)
+Started GET "/calculates/new" for ::1 at 2017-04-03 06:10:19 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  Rendered calculates/new.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (/Users/jongwon/RubymineProjects/calculator/app/views/calculates/new.html.erb:9: syntax error, unexpected ')', expecting keyword_end
+...( if c.operator == c then "+" );@output_buffer.safe_append='...
+...                               ^
+/Users/jongwon/RubymineProjects/calculator/app/views/calculates/new.html.erb:11: syntax error, unexpected keyword_ensure, expecting ')'
+/Users/jongwon/RubymineProjects/calculator/app/views/calculates/new.html.erb:13: syntax error, unexpected keyword_end, expecting ')'):
+  
+app/views/calculates/new.html.erb:9: syntax error, unexpected ')', expecting keyword_end
+app/views/calculates/new.html.erb:11: syntax error, unexpected keyword_ensure, expecting ')'
+app/views/calculates/new.html.erb:13: syntax error, unexpected keyword_end, expecting ')'
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.6ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (71.4ms)
+Started GET "/calculates/new" for ::1 at 2017-04-03 06:11:41 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.1ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 19ms (Views: 17.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 06:17:43 +0900
+Processing by CalculatesController#new as HTML
+  [1m[36mCalculate Load (0.2ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+Completed 500 Internal Server Error in 112ms (ActiveRecord: 0.5ms)
+
+
+  
+NameError (undefined local variable or method `a' for #<CalculatesController:0x007feed18e28b8>):
+  
+app/controllers/calculates_controller.rb:5:in `new'
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.1ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (116.9ms)
+Started GET "/calculates/new" for ::1 at 2017-04-03 06:18:02 +0900
+Processing by CalculatesController#new as HTML
+  [1m[36mCalculate Load (0.1ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+Completed 500 Internal Server Error in 91ms (ActiveRecord: 0.0ms)
+
+
+  
+NameError (undefined local variable or method `a' for #<CalculatesController:0x007feecc5e1d58>):
+  
+app/controllers/calculates_controller.rb:5:in `new'
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (17.1ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (140.6ms)
+Started GET "/calculates/new" for ::1 at 2017-04-03 06:18:11 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.4ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (92.5ms)
+Completed 500 Internal Server Error in 105ms (ActiveRecord: 0.9ms)
+
+
+  
+ActionView::Template::Error (undefined method `calculate' for #<#<Class:0x007feecc4feb70>:0x007feecc4fd978>
+Did you mean?  calculate_url):
+     6: <% end %>
+     7: 
+     8: <% @calculates.each do |c| %>
+     9:   <%= c.a %> <%= c.operator %> <%= c.b %> = <%= calculate(c.a, c.operator, c.b) %><br>
+    10: <% end %>
+  
+app/views/calculates/new.html.erb:9:in `block in _app_views_calculates_new_html_erb__1079388042999009051_70331803367940'
+app/views/calculates/new.html.erb:8:in `_app_views_calculates_new_html_erb__1079388042999009051_70331803367940'
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.4ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.6ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (71.7ms)
+Started GET "/calculates/new" for ::1 at 2017-04-03 06:19:12 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.1ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (87.0ms)
+Completed 500 Internal Server Error in 98ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `calculate' for #<#<Class:0x007feed3b88f20>:0x007feed3acbba0>
+Did you mean?  calculate_url):
+     6: <% end %>
+     7: 
+     8: <% @calculates.each do |c| %>
+     9:   <%= c.a %> <%= c.operator %> <%= c.b %> = <%= self.calculate(c.a, c.operator, c.b) %><br>
+    10: <% end %>
+  
+app/views/calculates/new.html.erb:9:in `block in _app_views_calculates_new_html_erb__1079388042999009051_70331865517060'
+app/views/calculates/new.html.erb:8:in `_app_views_calculates_new_html_erb__1079388042999009051_70331865517060'
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.8ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (70.9ms)
+Started GET "/calculates/new" for ::1 at 2017-04-03 06:19:38 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.2ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 27ms (Views: 18.4ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/calculates" for ::1 at 2017-04-03 06:19:45 +0900
+Processing by CalculatesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dWsAluFbToku2528vwEUIWbU84Xk35bWJ94wppqdJOEv7hlt9D6TjwZ08sOW7UvMA3B57VKTIQGdzXXyW6isPg==", "calculate"=>{"a"=>"2", "operator"=>"v", "b"=>"3"}, "commit"=>"submit"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "calculates" ("a", "b", "operator", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["a", 2.0], ["b", 3.0], ["operator", "v"], ["created_at", 2017-04-02 21:19:45 UTC], ["updated_at", 2017-04-02 21:19:45 UTC]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3001/calculates/new
+Completed 302 Found in 4ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 06:19:45 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.1ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 20ms (Views: 17.6ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/calculates" for ::1 at 2017-04-03 06:19:50 +0900
+Processing by CalculatesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"yRhxrhxvq5ZI8n3WPKbufhUqEusqYowyXt+PvwkAEBeTnWhVCQp2kGBdEqkVSrGTcI6Yg5wuO+XkzMrryDWYyA==", "calculate"=>{"a"=>"3", "operator"=>"/", "b"=>"2"}, "commit"=>"submit"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "calculates" ("a", "b", "operator", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["a", 3.0], ["b", 2.0], ["operator", "/"], ["created_at", 2017-04-02 21:19:50 UTC], ["updated_at", 2017-04-02 21:19:50 UTC]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3001/calculates/new
+Completed 302 Found in 3ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 06:19:50 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.1ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 18ms (Views: 16.5ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/calculates" for ::1 at 2017-04-03 06:19:58 +0900
+Processing by CalculatesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BZMDwxBcpKdTpb73gRumB8RCNMzjFnPfRtmFp7SZpU1fFho4BTl5oXsK0Yio9/nqoea+pFVaxAj8ysDzdawtkg==", "calculate"=>{"a"=>"2", "operator"=>"x", "b"=>"2"}, "commit"=>"submit"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "calculates" ("a", "b", "operator", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["a", 2.0], ["b", 2.0], ["operator", "x"], ["created_at", 2017-04-02 21:19:58 UTC], ["updated_at", 2017-04-02 21:19:58 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3001/calculates/new
+Completed 302 Found in 3ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 06:19:58 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.1ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 20ms (Views: 17.9ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/calculates" for ::1 at 2017-04-03 06:20:05 +0900
+Processing by CalculatesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"B0RJZ8rNH7sUJWhkBZZXjlVlAAJsjzx0Quu52/80FL5dwVCc36jCvTyKBxsseghjMMGKatrDi6P4+PyPPgGcYQ==", "calculate"=>{"a"=>"7", "operator"=>"/", "b"=>"1"}, "commit"=>"submit"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "calculates" ("a", "b", "operator", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["a", 7.0], ["b", 1.0], ["operator", "/"], ["created_at", 2017-04-02 21:20:05 UTC], ["updated_at", 2017-04-02 21:20:05 UTC]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3001/calculates/new
+Completed 302 Found in 3ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 06:20:05 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.1ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 18ms (Views: 16.0ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/calculates" for ::1 at 2017-04-03 06:20:09 +0900
+Processing by CalculatesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+AXqv1Elp27r/wx+x3SQcB5vj4FRD5tK9Yz+XE/TkuOigPNEREB6aMNQYwHumM+de8sF6edDLJ1Pn7sIjuYaPA==", "calculate"=>{"a"=>"7", "operator"=>"/", "b"=>"2"}, "commit"=>"submit"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "calculates" ("a", "b", "operator", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["a", 7.0], ["b", 2.0], ["operator", "/"], ["created_at", 2017-04-02 21:20:09 UTC], ["updated_at", 2017-04-02 21:20:09 UTC]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3001/calculates/new
+Completed 302 Found in 3ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 06:20:09 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.1ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 18ms (Views: 16.1ms | ActiveRecord: 0.1ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", :environment]]
+DEPRECATION WARNING: Passing #original_exception is deprecated and has no effect. Exceptions will automatically capture the original exception. (called from require at /Users/jongwon/RubymineProjects/calculator/bin/rails:9)
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCalculates (20170402204031)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "calculates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "a" float, "b" float, "operator" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170402204031"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-04-03 07:15:46 UTC], ["updated_at", 2017-04-03 07:15:46 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/calculates/new" for ::1 at 2017-04-03 16:15:52 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.2ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (8.5ms)
+Completed 200 OK in 99ms (Views: 76.7ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/calculates" for ::1 at 2017-04-03 16:15:59 +0900
+Processing by CalculatesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"7UjWwRSg3KkifHM7Nm6EAaf4RBeGPaCzPFRxUiEE7Ru3zc86AcUBrwrTHEQfgtvswlzOfzBxF2SGRzQG4DFlxA==", "calculate"=>{"a"=>"1", "operator"=>"x", "b"=>"3"}, "commit"=>"submit"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "calculates" ("a", "b", "operator", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["a", 1.0], ["b", 3.0], ["operator", "x"], ["created_at", 2017-04-03 07:15:59 UTC], ["updated_at", 2017-04-03 07:15:59 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3001/calculates/new
+Completed 302 Found in 6ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 16:15:59 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.1ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 24ms (Views: 21.6ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/calculates" for ::1 at 2017-04-03 16:16:42 +0900
+Processing by CalculatesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JMfLUlTPsjdDSx/g+OBsTtv8OOSJEC7v4YIXHmgISr9+QtKpQapvMWvkcJ/RDDOjvliyjD9cmThbkVJKqT3CYA==", "calculate"=>{"a"=>"1", "operator"=>"/", "b"=>"5"}, "commit"=>"submit"}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "calculates" ("a", "b", "operator", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["a", 1.0], ["b", 5.0], ["operator", "/"], ["created_at", 2017-04-03 07:16:42 UTC], ["updated_at", 2017-04-03 07:16:42 UTC]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3001/calculates/new
+Completed 302 Found in 13ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 16:16:42 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.2ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 24ms (Views: 22.4ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/calculates" for ::1 at 2017-04-03 16:16:53 +0900
+Processing by CalculatesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OEsFnFM5ZW1SSebvkbU9e5vvwQGZSz9dK5Tah9HLM+lizhxnRly4a3rmiZC4WWKW/ktLaS8HiIqRh5/TEP67Ng==", "calculate"=>{"a"=>"3", "operator"=>"+", "b"=>"2"}, "commit"=>"submit"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "calculates" ("a", "b", "operator", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["a", 3.0], ["b", 2.0], ["operator", "+"], ["created_at", 2017-04-03 07:16:53 UTC], ["updated_at", 2017-04-03 07:16:53 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3001/calculates/new
+Completed 302 Found in 4ms (ActiveRecord: 0.9ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 16:16:53 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.2ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 21ms (Views: 19.6ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/calculates" for ::1 at 2017-04-03 16:16:59 +0900
+Processing by CalculatesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5k6jKdOFuYkCsSrjeZFHct1PgIswUxxTbU+s5ywFmd28y7rSxuBkjyoeRZxQfRifuOsK44Yfq4TXXOmz7TARAg==", "calculate"=>{"a"=>"2", "operator"=>"*", "b"=>"4"}, "commit"=>"submit"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "calculates" ("a", "b", "operator", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["a", 2.0], ["b", 4.0], ["operator", "*"], ["created_at", 2017-04-03 07:16:59 UTC], ["updated_at", 2017-04-03 07:16:59 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3001/calculates/new
+Completed 302 Found in 4ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 16:16:59 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  [1m[36mCalculate Load (0.1ms)[0m  [1m[34mSELECT "calculates".* FROM "calculates"[0m
+  Rendered calculates/new.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 20ms (Views: 18.1ms | ActiveRecord: 0.1ms)
+
+
