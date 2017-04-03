@@ -581,3 +581,65 @@ Processing by CalculatesController#new as HTML
 Completed 200 OK in 20ms (Views: 18.1ms | ActiveRecord: 0.1ms)
 
 
+Started GET "/calculates/new" for ::1 at 2017-04-03 16:21:12 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  Rendered calculates/new.html.erb within layouts/application (185.6ms)
+Completed 500 Internal Server Error in 191ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `x' for #<#<Class:0x007feed3863ca0>:0x007feed3861248>):
+    1: <%= Calculate.calculate(1, x, 3) %>
+  
+app/views/calculates/new.html.erb:1:in `_app_views_calculates_new_html_erb__1079388042999009051_70331863878040'
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.4ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendering /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/jongwon/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (76.1ms)
+Started GET "/calculates/new" for ::1 at 2017-04-03 16:21:21 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  Rendered calculates/new.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 18ms (Views: 16.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 16:21:23 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  Rendered calculates/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 20ms (Views: 17.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 16:21:35 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  Rendered calculates/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 26ms (Views: 24.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 16:22:00 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  Rendered calculates/new.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 20ms (Views: 17.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 16:22:11 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  Rendered calculates/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 17ms (Views: 15.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/calculates/new" for ::1 at 2017-04-03 16:22:34 +0900
+Processing by CalculatesController#new as HTML
+  Rendering calculates/new.html.erb within layouts/application
+  Rendered calculates/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 17ms (Views: 15.4ms | ActiveRecord: 0.0ms)
+
+
