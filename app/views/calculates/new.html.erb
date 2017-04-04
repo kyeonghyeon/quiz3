@@ -1,3 +1,20 @@
-<p><%= Calculate.calculate(1, "+", 3) %>
-  <%= Calculate.calculate(1, "x", 3) %>
-  <%= Calculate.calculate(7, "/", 3) %></p>
+
+<%= form_for @calculate do |f| %>
+  <div class="input">
+    <%= f.number_field :a %>
+    <%= f.text_field :operator %>
+    <%= f.number_field :b %>
+  </div>
+  <div class="submit">
+    <%= f.submit '제출' %>
+  </div>
+<% end %> 
+
+<% @calculates.each do |f| %>
+  <%= f.a %>
+  <%= f.operator %>
+  <%= f.b %>
+  =
+  <%= Calculate.calculate(f.a, f.operator, f.b)%>
+  <br>
+<% end %>
